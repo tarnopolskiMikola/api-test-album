@@ -26,11 +26,20 @@ let baseUrl = "https://jsonplaceholder.typicode.com/photos"
   // console.log( currentBlockRows + "----currentBlockRows----")
  // console.log(pages )
   const buttonHandler = (url) => {
-    baseUrl =  url
+//     baseUrl =  url
   
-console.log(Date)
-     setIsButtonClick(true)
-     console.log(url)
+// console.log(Date)
+//      setIsButtonClick(true)
+//      console.log(url)
+  axios(url)
+    .then(
+      (res)=>{
+        
+        // console.log(res.data)
+        setDate(res.data)
+        setIsLoading(false)
+      }
+    )
   }
 
  
@@ -58,21 +67,21 @@ const currentPagef = (pag) =>{
  
 
  ////////////////////////////////////////////// useEffect////////////////////////////////////////////////
-  useEffect(() =>{
+  // useEffect(() =>{
    
 
-    axios(baseUrl)
-    .then(
-      (res)=>{
+  //   axios(baseUrl)
+  //   .then(
+  //     (res)=>{
         
-        // console.log(res.data)
-        setDate(res.data)
-        setIsLoading(false)
-      }
-    )
+  //       // console.log(res.data)
+  //       setDate(res.data)
+  //       setIsLoading(false)
+  //     }
+  //   )
      
    
-  }, [baseUrl])
+  // }, [baseUrl])
  /////////////////////////////////////////////////// useEffect///////////////////////////////////////////////////// 
   ////////////////////////////////////////////////////onNextClick////////////////////////////////////////////////////////////////////
  const onNextClick =() =>{

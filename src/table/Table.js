@@ -1,26 +1,28 @@
 import React from 'react'
 
-const Table = ({sortData , Date}) => {
+const Table = ({sortData , Date,}) => {
  console.log(Date)
     return (
 
         <div className="table">
       
            
-            <th  onClick={()=>{sortData('idd')}}>Sort id</th>
-            
-            <th >title</th>
+             
+      <th  onClick={()=>{sortData('idd')}}>SORT ID CLICK ME!</th>
            
-            <th >thumbnailUrl</th>
+          
                {Date.map(
                  item=>(
+                   
                    <tr key={item.id}>
                    <td>{item.id}</td>
-                   <td> --ALBUM--{item.albumId}</td>
-                   <td>{item.title}</td>
+                   <td>{item.UserId}{item.albumId}{item.postId}</td>
+                   <td>{item.title}{item.name}</td>
+                   <td>{item.email}{item.completed}</td>
+                   <td>{item.body}</td>
                    {/* <td>{item.url}</td> */}
-                   <td> <img src={item.thumbnailUrl} alt="ok"/></td>
-                   <td>{item.thumbnailUrl}</td>
+                   <td> <img src={item.thumbnailUrl} alt=""/></td>
+                  
                    </tr>
                 
                ))}
