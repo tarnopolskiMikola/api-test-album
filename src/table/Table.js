@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Table = ({sortData , Date,}) => {
- console.log(Date)
+//  console.log(Date)
     return (
 
         <div className="table">

@@ -11,7 +11,9 @@ let baseUrl = "https://jsonplaceholder.typicode.com/photos"
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage]  = useState();
   const [isButtonClick, setIsButtonClick] = useState(false)
-
+  const [buttonNextDisabled, setButtonNextDisabled] = useState('Item-p');
+  const [buttonPreviousDisabled, setButtonPreviousDisabled] = useState('page-item');
+  const [currentPageActiv, setcurrentPageActiv] = useState('page-item');
 
 
   const limitCountPage = 50;
@@ -20,9 +22,11 @@ let baseUrl = "https://jsonplaceholder.typicode.com/photos"
   const lastBlockRow = currentPage*limitCountPage
   const firstBlockRow =  lastBlockRow - limitCountPage
   const currentBlockRows = Date.slice(firstBlockRow,lastBlockRow)
- 
+  const afterBefore = currentPage-1;
+  const pageBefore = currentPage+1;
+  const lastBlockRowPagination = 1
   // console.log(firstBlockRow + "-------firstBlockRow--------")
-  // // console.log( TotalCountPage)
+  //  console.log( TotalCountPage)
   // console.log( currentBlockRows + "----currentBlockRows----")
  // console.log(pages )
   const buttonHandler = (url) => {
@@ -43,7 +47,7 @@ let baseUrl = "https://jsonplaceholder.typicode.com/photos"
   }
 
  
-  console.log(isButtonClick + '-------isButtonClick-------')
+  //console.log(isButtonClick + '-------isButtonClick-------')
   ////////////////////////////////////////////////////////sortData///////////////////////////////////////////////////
   const sortData = (field) => {
     console.log(field);
@@ -62,6 +66,8 @@ let baseUrl = "https://jsonplaceholder.typicode.com/photos"
 
 const currentPagef = (pag) =>{
   setCurrentPage(pag);
+  setButtonNextDisabled('')
+  setcurrentPageActiv('active') 
   console.log(pag+"  -----CurrentPage---------")
 }
  
@@ -108,15 +114,25 @@ const onPreviousClick =() =>{
 
   return (
     <div className="container">
-      
-      <Paginator pages={pages}
+
+                   
+     <Paginator pages={pages}
                  currentPagef={currentPagef}
                  onNextClick={onNextClick}
-                 onPreviousClick={onPreviousClick}  /> 
+                 onPreviousClick={onPreviousClick} 
+                 buttonNextDisabled={buttonNextDisabled}
+                 currentPageActiv={currentPageActiv}
+                 currentPage={currentPage}
+                 pageBefore={pageBefore}
+                 afterBefore={afterBefore}
+                 lastBlockRowPagination={lastBlockRowPagination}
+                 TotalCountPage={TotalCountPage} /> 
+      
       <Switcher buttonHandler={buttonHandler}/>
+       {isLoading ? <Loader/> :  <Table Date={currentBlockRows} sortData={sortData}/>}
+      
                   
-          {isLoading ? <Loader/> :  <Table Date={currentBlockRows} sortData={sortData}/>}
-
+      
      
     </div>
   );
