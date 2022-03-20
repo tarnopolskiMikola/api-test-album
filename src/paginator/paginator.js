@@ -12,7 +12,7 @@ const Paginator = ({
     lastBlockRowPagination,
     TotalCountPage}) => {
   
- 
+      var xN = NaN;
     return(
     //     <nav aria-label="...">
     //     <ul className="pagination">
@@ -64,13 +64,15 @@ const Paginator = ({
     </button>
 
      <div>
-     <span   className={(TotalCountPage=== 0 || currentPage === 1)?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(lastBlockRowPagination)}}> {lastBlockRowPagination}</span>
-     <span   className={(TotalCountPage=== 0  || currentPage === 1)?`Item-p-hide` : `Item-p`}> ....... </span>
-     <span   className={(afterBefore=== 0 || TotalCountPage=== 0)?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(afterBefore)}}> {afterBefore}</span>
-     <span className={(TotalCountPage===0)?`Item-p-hide` : `Item-p active`}    onClick={()=>{currentPagef(currentPage)}}>{currentPage} </span>
-     <span   className={(pageBefore=== 0 || TotalCountPage=== 0 || pageBefore>TotalCountPage)?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(pageBefore)}}> {pageBefore}</span>
-     <span   className={(TotalCountPage=== 0|| currentPage === TotalCountPage  )?`Item-p-hide ` : `Item-p`}> ....... </span>
-     <span   className={(TotalCountPage=== 0 || currentPage === TotalCountPage )?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(TotalCountPage)}}> {TotalCountPage}</span>
+     <span   className={(TotalCountPage=== 0 || currentPage === 1 )?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(lastBlockRowPagination)}}> {lastBlockRowPagination}</span>
+     <span   className={(TotalCountPage=== 0  || currentPage === 1 || currentPage > TotalCountPage)?`Item-p-hide` : `Item-p`}> ....... </span>
+     <span   className={(afterBefore=== 0 || TotalCountPage=== 0 || currentPage === undefined || currentPage > TotalCountPage)?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(afterBefore)}}> {afterBefore}</span>
+
+     <span className={(TotalCountPage===0 ||  currentPage === 0 || currentPage === undefined || currentPage > TotalCountPage)?`Item-p-hide` : `Item-p active`}    onClick={()=>{currentPagef(currentPage)}}>{currentPage} </span>
+     
+     <span   className={(pageBefore=== 0 || TotalCountPage=== 0 || currentPage === undefined || currentPage === TotalCountPage || currentPage > TotalCountPage)?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(pageBefore)}}> {pageBefore}</span>
+     <span   className={(TotalCountPage=== 0|| currentPage === TotalCountPage  || currentPage === undefined || currentPage > TotalCountPage )?`Item-p-hide ` : `Item-p`}> ....... </span>
+     <span   className={(TotalCountPage=== 0 || currentPage === TotalCountPage   )?`Item-p-hide` : `Item-p`} onClick={()=>{currentPagef(TotalCountPage)}}> {TotalCountPage}</span>
      </div>
 
      <button className={(TotalCountPage===0 || currentPage === TotalCountPage )?`Item-p-hide` : `next`} onClick={()=>{onNextClick()}}>
